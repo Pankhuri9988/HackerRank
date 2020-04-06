@@ -1,0 +1,77 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    // Complete the isValid function below.
+    static String isValid(String s) {
+        int l=s.length();
+        int i,j,k=0,p=0,o=0;
+        int a[]=new int[26];
+        int b[]=new int[l];
+        char ch;
+        for(i=0;i<l;i++)
+        {
+            ch=s.charAt(i);
+            j=ch-97;
+            a[j]=a[j]+1;
+        }
+        for(i=0;i<26;i++)
+        {
+            if(a[i]!=0)
+            {
+                b[k]=a[i];
+                k++;
+            }
+        }
+        int t=b[0];
+        for(j=1;j<k;j++)
+        {
+            if(b[j]!=t)
+            {
+                p++;
+                o=b[j];
+            }
+
+        }
+        if(p==l-2)
+        {
+            if(t-o==1)
+            return ("YES");
+
+        }
+        if(p>1)
+        return ("NO");
+        if(p==1)
+        {
+            if(Math.abs(t-o)==1)
+            return ("YES");
+            else
+            return ("NO");
+        }
+
+return ("no");
+    }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String s = scanner.nextLine();
+
+        String result = isValid(s);
+
+        bufferedWriter.write(result);
+        bufferedWriter.newLine();
+
+        bufferedWriter.close();
+
+        scanner.close();
+    }
+}
